@@ -13,16 +13,42 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.farrux02.maplibreproject",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        },
+        "NSLocationWhenInUseUsageDescription": "Мы используем ваше местоположение для отображения на карте",
+        "NSLocationAlwaysUsageDescription": "Мы используем ваше местоположение для отображения на карте"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.farrux02.maplibreproject",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-location",
+      "@maplibre/maplibre-react-native",
+      "expo-dev-client"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fb761d8e-4414-4734-8641-c35ffde37821"
+      }
+    },
+    "owner": "farrux02"
   }
 }
