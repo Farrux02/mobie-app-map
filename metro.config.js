@@ -1,13 +1,19 @@
 // metro.config.js
 
 const { getDefaultConfig } = require("@expo/metro-config");
-const { wrapWithReanimatedMetroConfig } = require("react-native-reanimated/metro-config");
 
-// Получаем конфигурацию по умолчанию от Expo
-const defaultConfig = getDefaultConfig(__dirname);
+const isWeb = process.env.EXPO_PLATFORM === "web";
 
-// Добавляем расширение "bin" для MapLibre
-defaultConfig.resolver.assetExts.push("bin");
+if (!isWeb) {
+  const {
+    wrapWithReanimatedMetroConfig,
+  } = require("react-native-reanimated/metro-config");
 
-// Оборачиваем конфигурацию с помощью reanimated
-module.exports = wrapWithReanimatedMetroConfig(defaultConfig);
+  const defaultConfig = getDefaultConfig(__dirname);
+
+  defaultConfig.resolver.assetExts.push("bin");
+
+  module.exports = wrapWithReanimatedMetroConfig(defaultConfig);
+} else {
+  module.exports = {};
+}
